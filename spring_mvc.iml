@@ -23,7 +23,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="spring_mvc" value="52798830-1e05-48bd-847f-fa47826ac6be" />
+          <factory-entry name="spring_mvc" value="593c8e2e-f462-4598-af63-99ce6a7fb1ac" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

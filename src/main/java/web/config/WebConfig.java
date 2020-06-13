@@ -23,6 +23,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import web.model.Car;
+import web.model.User;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -77,7 +78,7 @@ public class WebConfig implements WebMvcConfigurer {
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(Car.class);
+        factoryBean.setAnnotatedClasses(User.class);
         return factoryBean;
     }
 
