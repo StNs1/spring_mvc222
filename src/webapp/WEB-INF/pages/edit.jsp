@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
     <title>Title</title>
@@ -13,13 +13,17 @@
     </h2>
 </center>
 <div align="center">
-    <form:form action="/users/add" method="post" modelAttribute="user">
+    <form:form action="/users/edit" method="post" modelAttribute="user">
         <table border="1" cellpadding="5">
             <caption>
                 <h2>
-                    Добавить пользователя
+                    Изменить пользователя
                 </h2>
             </caption>
+            <tr>
+                <th>ID: </th>
+                <td>${user.id} <form:hidden path="id"/> </td>
+            </tr>
             <tr>
                 <th>Email:</th>
                 <td>
@@ -29,7 +33,7 @@
             <tr>
                 <th>Password:</th>
                 <td>
-                    <form:input path="password" type="password" size="45"/>
+                    <form:input path="password" type="text" size="45"/>
                 </td>
             </tr>
             <tr>

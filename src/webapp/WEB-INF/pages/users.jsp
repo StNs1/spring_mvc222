@@ -26,7 +26,7 @@
             <td>${users.email}</td>
             <td>${users.password}</td>
             <td>
-                <a href="">Изменить</a>
+                <a href="/users/edit?id=${users.id}">Изменить</a>
                 <a href="/users/delete?id=${users.id}">Удалить</a>
             </td>
         </tr>

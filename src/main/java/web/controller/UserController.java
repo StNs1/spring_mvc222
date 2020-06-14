@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
@@ -37,8 +38,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/delete", method = RequestMethod.GET)
-    public String deleteUser(@RequestParam("id") User user) {
-        userService.deleteUser(user);
+    public String deleteUser(@RequestParam long id) {
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/users/edit", method = RequestMethod.GET)
+    public ModelAndView editUser(@RequestParam long id) {
+        ModelAndView modelAndView = new ModelAndView("edit");
+        User user = userService.getUserById(id);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.editUser(user);
         return "redirect:/users";
     }
 }

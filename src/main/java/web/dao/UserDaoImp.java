@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaDelete;
 import java.util.List;
 
 @Repository
@@ -25,8 +27,10 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void deleteUser(User user) {
-        sessionFactory.getCurrentSession().delete(user);
+    public void deleteUser(long id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE FROM User WHERE id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 
     @Override
@@ -34,5 +38,13 @@ public class UserDaoImp implements UserDao {
     public List<User> listUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User");
         return query.getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public User getUserById(long id) {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE id = : id");
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 }
